@@ -182,24 +182,26 @@ namespace SimplePayment
 
         private bool ValidateOrderDetailsModel(OrderDetails orderDetails)
         {
-            return !string.IsNullOrEmpty(orderDetails.Salt) &&
+            bool valid = !string.IsNullOrEmpty(orderDetails.Salt) &&
                          !string.IsNullOrEmpty(orderDetails.Merchant) &&
                          !string.IsNullOrEmpty(orderDetails.OrderRef) &&
                          !string.IsNullOrEmpty(orderDetails.Currency) &&
-                         !string.IsNullOrEmpty(orderDetails.CustomerEmail) &&
+                         (!string.IsNullOrEmpty(orderDetails.CustomerEmail) || orderDetails.MaySelectEmail == true) &&
                          !string.IsNullOrEmpty(orderDetails.Language) &&
                          !string.IsNullOrEmpty(orderDetails.SDKVersion) &&
                          orderDetails.Methods.Length > 0 &&
                          !string.IsNullOrEmpty(orderDetails.Total) &&
                          !string.IsNullOrEmpty(orderDetails.Url) &&
-                         (!string.IsNullOrEmpty(orderDetails.Invoice.Name) ||
-                          !string.IsNullOrEmpty(orderDetails.Invoice.Company)) &&
-                         !string.IsNullOrEmpty(orderDetails.Invoice.Country) &&
-                         !string.IsNullOrEmpty(orderDetails.Invoice.State) &&
-                         !string.IsNullOrEmpty(orderDetails.Invoice.City) &&
-                         !string.IsNullOrEmpty(orderDetails.Invoice.Zip) &&
-                         (!string.IsNullOrEmpty(orderDetails.Invoice.Address) ||
-                         !string.IsNullOrEmpty(orderDetails.Invoice.Address2));
+                         ((!string.IsNullOrEmpty(orderDetails.Invoice?.Name) ||
+                          !string.IsNullOrEmpty(orderDetails.Invoice?.Company)) &&
+                         !string.IsNullOrEmpty(orderDetails.Invoice?.Country) &&
+                         !string.IsNullOrEmpty(orderDetails.Invoice?.State) &&
+                         !string.IsNullOrEmpty(orderDetails.Invoice?.City) &&
+                         !string.IsNullOrEmpty(orderDetails.Invoice?.Zip) &&
+                         (!string.IsNullOrEmpty(orderDetails.Invoice?.Address) ||
+                         !string.IsNullOrEmpty(orderDetails.Invoice?.Address2))) || orderDetails.MaySelectInvoice is null == false;
+
+            return valid;
         }
     }
 }

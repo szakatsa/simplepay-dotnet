@@ -19,5 +19,7 @@ namespace SimplePayment.Common.Models
         public bool? TwoStep { get; set; }
         public BillingDetails Invoice { get; set; }
         public OrderItem[] OrderItems { get; set; }
+        public bool? MaySelectEmail { get; set; }
+        public bool? MaySelectInvoice { get; set; }
     }
 }

@@ -23,8 +23,10 @@ namespace SimplePayment.Common.Models
         public string Url { get; set; }
         public RedirectUrls? Urls { get; set; }
         public bool? TwoStep { get; set; }
-        public BillingDetails Invoice { get; set; }
+        public BillingDetails? Invoice { get; set; }
         public OrderItem[] OrderItems { get; set; }
+        public bool? MaySelectEmail { get; set; }
+        public bool? MaySelectInvoice { get; set; }
 
         public OrderDetails()
         {
@@ -63,6 +65,9 @@ namespace SimplePayment.Common.Models
             TwoStep = orderDetailsInput.TwoStep;
             Invoice = orderDetailsInput.Invoice;
             OrderItems = orderDetailsInput.OrderItems;
+
+            MaySelectEmail = orderDetailsInput.MaySelectEmail;
+            MaySelectInvoice = orderDetailsInput.MaySelectInvoice;
         }
     }
 }
