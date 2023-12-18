@@ -15,6 +15,8 @@
     <RepositoryUrl>https://github.com/martonx/simplepay-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageType>Dependency</PackageType>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <None Include="licenses\LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
